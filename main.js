@@ -8,7 +8,11 @@ async function fetchBusInfo() {
   const api = `https://ptx.transportdata.tw/MOTC/v2/Bus/DisplayStopOfRoute/City/Taipei?$filter=Stops/any(s: s/StopName/Zh_tw eq '${stopName}')&$format=JSON`;
 
   try {
-    const res = await fetch(api);
+    const corsProxy = "https://cors-anywhere.herokuapp.com/";
+const targetAPI = `https://ptx.transportdata.tw/MOTC/v2/Bus/DisplayStopOfRoute/City/Taipei?$filter=Stops/any(s: s/StopName/Zh_tw eq '${stopName}')&$format=JSON`;
+
+const res = await fetch(corsProxy + targetAPI);
+
     const data = await res.json();
 
     const busesAtStop = new Set();
